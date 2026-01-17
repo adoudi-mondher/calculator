@@ -1,152 +1,162 @@
-# Penser Objet (POO) – Cours débutant / reconversion
+# Penser Objet (POO)
+## Cours débutant – reconversion / formation professionnelle
 ### Fil rouge : projet *Calculatrice*
 
 ---
 
 ## Sommaire
-
-1. [Introduction – Pourquoi la POO](#1-introduction--pourquoi-la-poo)
-2. [Classe, objet et responsabilité](#2-classe-objet-et-responsabilité)
-3. [Encapsulation](#3-encapsulation)
-4. [Abstraction](#4-abstraction)
-5. [Interfaces et polymorphisme](#5-interfaces-et-polymorphisme)
-6. [Héritage – pourquoi on ne l’utilise pas ici](#6-héritage--pourquoi-on-ne-lutilise-pas-ici)
-7. [Constructeurs – quand et pourquoi](#7-constructeurs--quand-et-pourquoi)
-8. [Getters / Setters – pourquoi on ne les utilise pas ici](#8-getters--setters--pourquoi-on-ne-les-utilise-pas-ici)
-9. [Séparation des responsabilités](#9-séparation-des-responsabilités)
-10. [Gestion des erreurs](#10-gestion-des-erreurs)
-11. [UML – lecture orale (version examen)](#11-uml--lecture-orale-version-examen)
-12. [Patterns utilisés](#12-patterns-utilisés)
-13. [SOLID appliqué](#13-solid-appliqué)
-14. [Règles d’or à retenir](#14-règles-dor-à-retenir)
-15. [Questions typiques du jury](#15-questions-typiques-du-jury)
-
+- [Introduction – Pourquoi la POO ?](#introduction-poo)
+- [Classe, objet et responsabilité](#classe-objet-responsabilite)
+- [Encapsulation](#encapsulation)
+- [Abstraction](#abstraction)
+- [Interfaces et polymorphisme](#interfaces-polymorphisme)
+- [Héritage – pourquoi on ne l’utilise pas ici](#heritage)
+- [Constructeurs – quand et pourquoi](#constructeurs)
+- [Getters / Setters – pourquoi on ne les utilise pas ici](#getters-setters)
+- [Séparation des responsabilités (UI / Application / Métier)](#separation-responsabilites)
+- [Gestion des erreurs](#gestion-erreurs)
+- [UML – lecture orale (version examen)](#uml-lecture-orale)
+- [Patterns utilisés (expliqués simplement)](#patterns)
+- [SOLID appliqué](#solid)
+- [Règles d’or à retenir](#regles-or)
+- [Questions typiques du jury](#questions-jury)
 
 ---
 
-## 1️⃣ Introduction – Pourquoi la POO ?
+<h2 id="introduction-poo">1. Introduction – Pourquoi la POO ?</h2>
 
-La programmation orientée objet est une **manière de structurer un programme** pour :
+La programmation orientée objet (POO) est une **manière de structurer un programme** pour :
 - mieux raisonner,
 - faciliter l’évolution,
 - séparer les responsabilités.
 
 👉 La POO n’est pas une fin en soi, mais un **outil de conception**.
 
-🗣️ *À l’oral*
+🗣️ **À l’oral (jury)**
 > La POO permet de structurer un logiciel autour de responsabilités claires plutôt que d’une suite d’instructions.
 
 ---
 
-## 2️⃣ Classe, objet et responsabilité
+<h2 id="classe-objet-responsabilite">2. Classe, objet et responsabilité</h2>
 
-Une **classe** représente une **intention** et une **responsabilité**.  
-Un **objet** est une instance concrète de cette classe à l’exécution.
+- Une **classe** représente une intention et une responsabilité.
+- Un **objet** est une instance concrète créée à l’exécution.
 
-Exemples :
-- `Application` → orchestre le scénario
-- `Calculatrice` → exécute un calcul
-- `Operation` → définit une règle de calcul
-- `ConsoleUI` → gère les entrées/sorties
+### Exemples (calculatrice)
+- `Application` : orchestre le scénario utilisateur
+- `Calculatrice` : exécute un calcul
+- `Operation` : définit une règle de calcul
+- `ConsoleUI` : gère l’entrée et la sortie console
 
-👉 Une classe = **une raison de changer**.
+👉 Une classe doit avoir **une seule raison de changer**.
+
+🗣️ **À l’oral**
+> J’ai structuré mon application autour de responsabilités uniques afin de limiter les couplages.
 
 ---
 
-## 3️⃣ Encapsulation
+<h2 id="encapsulation">3. Encapsulation</h2>
 
 L’encapsulation consiste à :
 - cacher les détails internes,
 - exposer uniquement ce qui est nécessaire.
 
-Exemple :
-- `Calculatrice` n’expose qu’une méthode `executer(...)`
-- elle ne révèle aucun état interne
+### Exemple
+`Calculatrice` :
+- aucun état exposé
+- une seule méthode publique `executer(...)`
 
-🗣️ *À l’oral*
-> L’encapsulation limite les dépendances et protège l’intégrité des objets.
+🗣️ **À l’oral**
+> L’encapsulation protège l’état interne des objets et limite les dépendances.
 
 ---
 
-## 4️⃣ Abstraction
+<h2 id="abstraction">4. Abstraction</h2>
 
 Abstraire, c’est :
 > se concentrer sur **ce que fait** une entité, pas **comment elle le fait**.
 
-Exemple :
-- `Operation` abstrait le concept de calcul
-- l’Application ignore s’il s’agit d’une addition ou d’une division
+### Exemple
+`Operation` abstrait la notion de calcul :
+- addition
+- soustraction
+- division
+
+👉 L’Application ne connaît pas les détails.
+
+🗣️ **À l’oral**
+> L’abstraction me permet de raisonner en termes de comportements plutôt qu’en termes d’implémentation.
 
 ---
 
-## 5️⃣ Interfaces et polymorphisme
+<h2 id="interfaces-polymorphisme">5. Interfaces et polymorphisme</h2>
 
 ### Interface
 Une interface définit un **contrat**.
 
 Exemple :
-- `Operation` impose une méthode de calcul
+- `Operation` impose une méthode de calcul.
 
 ### Polymorphisme
 Le polymorphisme permet d’utiliser différentes implémentations via une même interface.
 
 👉 Même appel, comportements différents.
 
-🗣️ *À l’oral*
-> Le polymorphisme permet d’ajouter de nouvelles opérations sans modifier la calculatrice.
+🗣️ **À l’oral**
+> Grâce au polymorphisme, la calculatrice peut exécuter toute opération respectant le contrat Operation.
 
 ---
 
-## 6️⃣ Héritage – Pourquoi on ne l’utilise pas ici
+<h2 id="heritage">6. Héritage – pourquoi on ne l’utilise pas ici</h2>
 
-Bien que tentant, l’héritage n’apporte rien dans ce projet :
+Bien que tentant, l’héritage n’est pas pertinent ici :
 - pas de comportement commun à factoriser
 - risque de couplage fort
 
 👉 Une interface suffit.
 
-🗣️ *À l’oral*
-> J’ai privilégié les interfaces à l’héritage pour favoriser la flexibilité et limiter le couplage.
+🗣️ **À l’oral**
+> J’ai volontairement évité l’héritage pour privilégier les interfaces et limiter le couplage.
 
 ---
 
-## 7️⃣ Constructeurs – Quand et pourquoi
+<h2 id="constructeurs">7. Constructeurs – quand et pourquoi</h2>
 
 Un constructeur sert à **garantir qu’un objet est valide dès sa création**.
 
-### Pourquoi on en utilise un dans `Application`
-- `Application` **ne peut pas fonctionner sans** :
-  - une `UserInterface`
-  - une `Calculatrice`
+### Pourquoi un constructeur dans `Application`
+`Application` ne peut fonctionner sans :
+- une `UserInterface`
+- une `Calculatrice`
 
 👉 Le constructeur impose ces dépendances.
 
-### Pourquoi on n’en utilise pas ailleurs
+### Pourquoi pas ailleurs
 - `Calculatrice` est **stateless**
 - `Operation` n’a pas d’état
-- `ConsoleUI` initialise seule son `Scanner`
+- `ConsoleUI` gère seule son `Scanner`
 
-🗣️ *À l’oral*
+🗣️ **À l’oral**
 > J’utilise un constructeur uniquement lorsque des dépendances sont indispensables au bon fonctionnement de la classe.
 
 ---
 
-## 8️⃣ Getters / Setters – Pourquoi on ne les utilise pas ici
+<h2 id="getters-setters">8. Getters / Setters – pourquoi on ne les utilise pas ici</h2>
 
-Les getters/setters servent à **exposer ou modifier un état**.
+Les getters/setters servent à exposer ou modifier un **état**.
 
 Dans ce projet :
-- la majorité des classes sont **sans état**
-- les attributs existants sont **internes et immuables**
+- la majorité des classes sont sans état
+- les attributs existants sont internes et immuables
 
 👉 Aucun besoin réel de getters/setters.
 
-🗣️ *À l’oral*
-> Je n’ai pas ajouté de getters/setters par habitude, uniquement en cas de besoin réel.
+🗣️ **À l’oral**
+> Je n’ajoute pas de getters/setters par habitude, uniquement lorsqu’il y a un besoin fonctionnel réel.
 
 ---
 
-## 9️⃣ Séparation des responsabilités
+<h2 id="separation-responsabilites">9. Séparation des responsabilités (UI / Application / Métier)</h2>
 
 ### Découpage clair
 - **UI** : lire / afficher
@@ -158,43 +168,45 @@ Dans ce projet :
 - le calcul est dans `Operation`
 - l’affichage est dans `ConsoleUI`
 
-🗣️ *À l’oral*
-> La séparation des responsabilités permet de faire évoluer une couche sans impacter les autres.
+🗣️ **À l’oral**
+> Cette séparation permet de changer l’interface sans impacter la logique métier.
 
 ---
 
-## 🔟 Gestion des erreurs
+<h2 id="gestion-erreurs">10. Gestion des erreurs</h2>
 
-Deux types d’erreurs :
+### Deux types d’erreurs
 - **Métier** → `OperationException` (division par zéro)
 - **Technique / saisie** → `UserInputException`
 
-Principe :
+### Principe
 - on lève l’exception là où l’erreur est détectée
 - on l’attrape là où une décision est possible
 
----
-
-## 1️⃣1️⃣ UML – Lecture orale (version examen)
-
-Application possède une UserInterface et une Calculatrice → associations porteuses (1..1).  
-ConsoleUI implémente UserInterface → relation *est une*.  
-Operation est une interface ; Addition, Soustraction, Multiplication, Division l’implémentent.  
-Calculatrice utilise une Operation comme paramètre → association simple.  
-Application crée une Operation → dépendance `<<create>>`.  
-Division peut lever OperationException → dépendance `<<throws>>`.
+👉 Les boucles sont dans `Application`.
 
 ---
 
-## 1️⃣2️⃣ Patterns utilisés (expliqués simplement)
+<h2 id="uml-lecture-orale">11. UML – lecture orale (version examen)</h2>
 
-- **Strategy** : les opérations sont interchangeables
-- **Orchestrateur** : Application pilote le scénario
-- **Service stateless** : Calculatrice ne conserve aucun état
+- Application possède une UserInterface et une Calculatrice → associations porteuses (1..1).
+- ConsoleUI implémente UserInterface → relation « est une ».
+- Operation est une interface ; Addition, Soustraction, Multiplication, Division l’implémentent.
+- Calculatrice utilise une Operation comme paramètre → association simple (pas de possession).
+- Application crée une Operation (`creerOperation`) → dépendance `<<create>>`.
+- Division peut signaler une règle métier via OperationException → dépendance `<<throws>>`.
 
 ---
 
-## 1️⃣3️⃣ SOLID appliqué
+<h2 id="patterns">12. Patterns utilisés (expliqués simplement)</h2>
+
+- **Strategy** : les règles de calcul sont interchangeables.
+- **Orchestrateur** : Application pilote le scénario utilisateur.
+- **Service stateless** : Calculatrice ne conserve aucun état.
+
+---
+
+<h2 id="solid">13. SOLID appliqué</h2>
 
 - **S** : une responsabilité par classe
 - **O** : ajout d’une opération sans modifier l’existant
@@ -203,7 +215,7 @@ Division peut lever OperationException → dépendance `<<throws>>`.
 
 ---
 
-## 1️⃣4️⃣ Règles d’or à retenir
+<h2 id="regles-or">14. Règles d’or à retenir</h2>
 
 - une classe = une responsabilité
 - on boucle là où on décide
@@ -214,10 +226,10 @@ Division peut lever OperationException → dépendance `<<throws>>`.
 
 ---
 
-## 1️⃣5️⃣ Questions typiques du jury
+<h2 id="questions-jury">15. Questions typiques du jury</h2>
 
 **Pourquoi une classe Application ?**  
-→ Pour séparer l’orchestration du point d’entrée technique.
+→ Pour séparer l’orchestration du point d’entrée technique (`main`).
 
 **Pourquoi pas tout dans le main ?**  
 → Ce serait du procédural, difficile à maintenir.
