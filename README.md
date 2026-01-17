@@ -4,21 +4,23 @@
 ---
 
 ## Sommaire
-1. Introduction – Pourquoi la POO
-2. Classe, objet et responsabilité
-3. Encapsulation
-4. Abstraction
-5. Interfaces et polymorphisme
-6. Héritage : pourquoi on ne l’utilise pas ici
-7. Constructeurs : quand et pourquoi
-8. Getters / Setters : pourquoi on ne les utilise pas ici
-9. Séparation des responsabilités (UI / Application / Métier)
-10. Gestion des erreurs
-11. UML : lecture orale (version examen)
-12. Patterns utilisés (expliqués simplement)
-13. SOLID appliqué (sans jargon)
-14. Règles d’or à retenir
-15. Questions typiques du jury
+
+1. [Introduction – Pourquoi la POO](#1-introduction--pourquoi-la-poo)
+2. [Classe, objet et responsabilité](#2-classe-objet-et-responsabilité)
+3. [Encapsulation](#3-encapsulation)
+4. [Abstraction](#4-abstraction)
+5. [Interfaces et polymorphisme](#5-interfaces-et-polymorphisme)
+6. [Héritage – pourquoi on ne l’utilise pas ici](#6-héritage--pourquoi-on-ne-lutilise-pas-ici)
+7. [Constructeurs – quand et pourquoi](#7-constructeurs--quand-et-pourquoi)
+8. [Getters / Setters – pourquoi on ne les utilise pas ici](#8-getters--setters--pourquoi-on-ne-les-utilise-pas-ici)
+9. [Séparation des responsabilités](#9-séparation-des-responsabilités)
+10. [Gestion des erreurs](#10-gestion-des-erreurs)
+11. [UML – lecture orale (version examen)](#11-uml--lecture-orale-version-examen)
+12. [Patterns utilisés](#12-patterns-utilisés)
+13. [SOLID appliqué](#13-solid-appliqué)
+14. [Règles d’or à retenir](#14-règles-dor-à-retenir)
+15. [Questions typiques du jury](#15-questions-typiques-du-jury)
+
 
 ---
 
