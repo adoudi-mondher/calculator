@@ -1,0 +1,14 @@
+Comment lire le diagramme :
+
+Application possède (-) une UserInterface et une Calculatrice → associations porteuses (multiplicité 1..1).
+
+ConsoleUI implémente UserInterface → relation “est une”.
+
+Operation est une interface ; Addition, Soustraction, Multiplication, Division implémentent Operation.
+
+Calculatrice utilise une Operation comme paramètre → association simple (pas de possession).
+
+Application crée une Operation (creerOperation) → dépendance <<create>>.
+
+Division peut signaler une règle métier via OperationException → dépendance <<throws>>.
+

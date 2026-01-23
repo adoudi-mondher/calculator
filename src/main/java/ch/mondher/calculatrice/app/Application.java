@@ -7,6 +7,7 @@ import ch.mondher.calculatrice.metier.operations.Addition;
 import ch.mondher.calculatrice.metier.operations.Division;
 import ch.mondher.calculatrice.metier.operations.Multiplication;
 import ch.mondher.calculatrice.metier.operations.Soustraction;
+import ch.mondher.calculatrice.ui.Expression;
 import ch.mondher.calculatrice.ui.UserInputException;
 import ch.mondher.calculatrice.ui.UserInterface;
 
@@ -21,62 +22,30 @@ public class Application {
     }
 
     public void demarrer() {
-        Operation operation = null;
-        double a = 0;
-        double b = 0;
-
-        while (operation == null) {
-            try {
-                ui.afficherMessage("Entrez une opération (+, -, *, /) :");
-                String symbole = ui.lireChoixOperation();
-                // Crée l'opération correspondant au symbole
-                operation = creerOperation(symbole);
-            } catch (OperationException e) {
-                ui.afficherErreur(e.getMessage());
-            }
-        }
-
         while (true) {
             try {
-                ui.afficherMessage("Entrez le premier nombre :");
-                a = ui.lireNombre();
-                break;
-            } catch (UserInputException e) {
-                ui.afficherErreur(e.getMessage());
-            }
-        }
-
-        while (true) {
-            try {
-                ui.afficherMessage("Entrez le second nombre :");
-                b = ui.lireNombre();
-                break;
-            } catch (UserInputException e) {
-                ui.afficherErreur(e.getMessage());
-            }
-        }
-
-        try {
-            // Exécute le calcul via la calculatrice
-            double resultat = calculatrice.executer(operation, a, b);
-            // Affiche le résultat
-            ui.afficherResultat(resultat);
-        } catch (OperationException e) {
-            ui.afficherErreur(e.getMessage());
+                ui.afficherMessage("Entrez une expression (ex: 2 + 3, 2+3, -2.5 * 4, -2,5 * 4, 10 / -2 ou q pour quitter :");
+                Expression expr = ui.lireExpression();
+                // Signal de sortie
+                if (expr == null) {
+                    ui.afficherMessage("Fin du programme.");
+                    return; // sortie propre
+                }
+                Operation operation = creerOperation(expr.getSymbole());
+                double resultat = calculatrice.executer(operation, expr.getA(), expr.getB());
+                ui.afficherResultat(resultat);
+            } catch (UserInputException | OperationException e) { ui.afficherErreur(e.getMessage()); }
         }
     }
 
     private Operation creerOperation(String symbole) throws OperationException {
-        if (!symbole.matches("[+*/-]")) {
-            throw new OperationException("Opération inconnue : " + symbole);
-        }
         symbole = symbole.trim();
         switch (symbole) {
             case "+": return new Addition();
             case "-": return new Soustraction();
             case "*": return new Multiplication();
             case "/": return new Division();
-            default :  throw new OperationException("Opération inconnue : " + symbole);
+            default : throw new OperationException("Opération inconnue : " + symbole);
         }
     }
 }

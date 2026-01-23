@@ -3,8 +3,7 @@ package ch.mondher.calculatrice.ui;
 public interface UserInterface {
 
     void afficherMessage(String message);
-    String lireChoixOperation();
-    double lireNombre();
+    Expression lireExpression();
     void afficherResultat(double resultat);
     void afficherErreur(String message);
 
