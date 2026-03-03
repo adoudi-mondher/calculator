@@ -11,6 +11,9 @@ import ch.mondher.calculatrice.ui.Expression;
 import ch.mondher.calculatrice.ui.UserInputException;
 import ch.mondher.calculatrice.ui.UserInterface;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class Application {
 
     private final UserInterface ui;
@@ -33,6 +36,13 @@ public class Application {
                 }
                 Operation operation = creerOperation(expr.getSymbole());
                 double resultat = calculatrice.executer(operation, expr.getA(), expr.getB());
+
+                double resultatArrondi = BigDecimal
+                        .valueOf(resultat)
+                        .setScale(2, RoundingMode.HALF_UP)
+                        .doubleValue();
+
+                ui.afficherResultat(resultatArrondi);
                 ui.afficherResultat(resultat);
             } catch (UserInputException | OperationException e) { ui.afficherErreur(e.getMessage()); }
         }

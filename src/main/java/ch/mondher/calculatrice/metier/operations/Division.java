@@ -8,10 +8,7 @@ public class Division implements Operation {
     @Override
     public double calculer(double a, double b) throws OperationException {
 
-        if (b == 0) {
-            throw new OperationException("Division par zéro interdite !");
-        }
-
+        if (b == 0) { throw new OperationException("Division par zéro interdite !"); }
         return a / b;
     }
 }

@@ -6,12 +6,20 @@ import java.util.regex.Pattern;
 
 public class ConsoleUI implements UserInterface {
 
-    private final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner;
+
+    public ConsoleUI() {
+        this(new Scanner(System.in));
+    }
+
+    public ConsoleUI(Scanner scanner) {
+        this.scanner = scanner;
+    }
 
     // Regex : "2 + 3", "2+3", "-2.5 * 4", "-2,5 * 4", "10 / -2"
     private static final Pattern EXPRESSION_PATTERN =
             Pattern.compile(
-                    "^\\s*([-+]?(?:\\d+(?:[\\.,]\\d+)?))\\s*(\\S)\\s*([-+]?(?:\\d+(?:[\\.,]\\d+)?))\\s*$"
+                    "^\\s*([-+]?\\d+(?:[.,]\\d+)?)\\s*(\\S)\\s*([-+]?\\d+(?:[.,]\\d+)?)\\s*$"
             );
 
     @Override
