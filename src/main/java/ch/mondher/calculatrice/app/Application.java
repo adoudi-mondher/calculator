@@ -41,6 +41,8 @@ public class Application {
                     return; // sortie propre
                 }
 
+                System.out.println(expr.toString());
+
                 Operation operation = operationFactory.getOperation(expr.getSymbole());
 
                 double resultat = calculatrice.executer(operation, expr.getA(), expr.getB());

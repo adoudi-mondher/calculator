@@ -12,6 +12,15 @@ public class Expression {
         this.b = b;
     }
 
+    @Override
+    public String toString() {
+        return "Expression{" +
+                "a=" + a +
+                ", symbole='" + symbole + '\'' +
+                ", b=" + b +
+                '}';
+    }
+
     public double getA() { return a; }
     public String getSymbole() { return symbole; }
     public double getB() { return b; }

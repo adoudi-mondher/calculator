@@ -23,6 +23,5 @@ public class Main {
         Application app = new Application(ui, calculatrice, factory, dao);
         // Démarrage de l'application
         app.demarrer();
-
     }
 }
